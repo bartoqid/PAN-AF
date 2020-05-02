@@ -145,10 +145,7 @@ def macWrite(hostdata):
       file.write("%s\n" % (mac, ))
 
 def fwWrite(fwxml):
-  xmlfile = StringIO.StringIO()
-  xmlfile.write(fwxml)
-  files = {xmlfile: xmlfile.getvalue()}
-  values = {'type': 'user-id', 'key': fwkey}
+  values = {'type': 'user-id', 'key': fwkey, 'cmd': fwxml}
   palocall = 'https://' + fwhost + '/api'
   r = requests.post(palocall, data=values, files=files, verify=False)
   rtree = ET.fromstring(r.text)
