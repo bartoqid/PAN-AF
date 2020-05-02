@@ -78,7 +78,7 @@ print """
 
 <div class="titleblock">
   <div class="image">
-    <img src="/logo.svg" height="75px">
+    <img src="/logo.png" height="75px">
   </div>
   <div class="text">
     Test Security Policy
