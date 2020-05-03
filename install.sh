@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #Tell the installer the root of the files to download
-REPO="https://raw.githubusercontent.com/p0lr/PAN-AF/master/"
+REPO="https://raw.githubusercontent.com/bartoqid/PAN-AF/branch1/"
 
 #check to make sure Python is installed
 python --version
@@ -73,6 +73,10 @@ sudo chown www-data *.*
 sudo chgrp www-data *.*
 sudo chmod 755 *.*
 
+cd /etc/rsyslog.d
+sudo rm -f 50-default.conf
+sudo wget -q ${REPO}50-default.conf
+sudo service rsyslog restart
 #log permissions and rotation configuration
 sudo chmod 644 /var/log/syslog
 sudo chmod 644 /var/log/messages
@@ -102,7 +106,7 @@ sudo chmod 644 apache2
 cd /var/www/html
 sudo rm index.html
 sudo wget -q ${REPO}index.html
-sudo wget -q ${REPO}logo.svg
+sudo wget -q ${REPO}logo.png
 sudo wget -q ${REPO}style.css
 sudo wget -q ${REPO}favicon.ico
 sudo touch macs.txt

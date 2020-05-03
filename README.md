@@ -15,7 +15,7 @@ The logic is as follows:
 6. If the MAC is not in the database and the hostname is not available, assign a name based on the MAC address only
 7. Upload all of the device-name-to-user-id-mappings and user-id-to-group-mappings to the firewall
 
-### To install, issue the following commands:
+### To install this branch, issue the following commands:
 ```
 wget -q https://raw.githubusercontent.com/p0lr/PAN-AF/master/install.sh
 chmod +x install.sh
