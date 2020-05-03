@@ -126,13 +126,13 @@ sudo chgrp www-data *.*
 sudo chmod 755 *.*
 
 #harden the Raspberry Pi
-sudo systemctl disable avahi-daemon
-sudo systemctl stop avahi-daemon
-sudo systemctl disable triggerhappy
-sudo systemctl stop triggerhappy
+#sudo systemctl disable avahi-daemon
+#sudo systemctl stop avahi-daemon
+#sudo systemctl disable triggerhappy
+#sudo systemctl stop triggerhappy
 
 #harden Apache
-cd /etc/apache2/conf-available
-sudo rm -y security.conf
-sudo wget -q ${REPO}security.conf
-sudo systemctl restart apache2
+#cd /etc/apache2/conf-available
+#sudo rm -y security.conf
+#sudo wget -q ${REPO}security.conf
+#sudo systemctl restart apache2
