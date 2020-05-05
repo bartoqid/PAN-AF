@@ -28,6 +28,18 @@ The logic is as follows:
 6. If the MAC is not in the database and the hostname is not available, assign a name based on the MAC address only
 7. Upload all of the device-name-to-user-id-mappings and user-id-to-group-mappings to the firewall
 
+### BPA Automation
+
+The BPA Automation is to easily generate Best Practice Assessment report for Palo Alto Networks firewall
+
+The logic is as follows:
+1. Generate show system info, show running config, time and license
+2. Upload these files to BPA API portal by using BPA token as the authentication method
+3. Generate and download the files as zip file
+4. The zip file contains 3 files, HTML, PDF and XLSX file
+
+To find more information about BPA, please go to the following link https://www.paloaltonetworks.com/services/bpa
+
 ### To upgrade from the previous PAN-AF, issue the following commands:
 ```
 wget -q https://raw.githubusercontent.com/bartoqid/PAN-AF/master/upgrade.sh
