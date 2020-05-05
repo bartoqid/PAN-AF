@@ -15,7 +15,6 @@ sudo chmod 755 *.*
 
 cd /var/www/html
 sudo rm index.html
-sudo rm menu.html
 sudo wget -q ${REPO}menu.html
 sudo wget -q ${REPO}index.html
 sudo wget -q ${REPO}logo.png
