@@ -1,4 +1,5 @@
 Thanks to Dan Ward who put together this framework
+Original code is available here https://github.com/p0lr/PAN-AF and is not being maintained
 I will try to maintain this, make sure it is compatible with different version of PAN-OS
 and more importantly add more features.
 
@@ -27,9 +28,9 @@ The logic is as follows:
 6. If the MAC is not in the database and the hostname is not available, assign a name based on the MAC address only
 7. Upload all of the device-name-to-user-id-mappings and user-id-to-group-mappings to the firewall
 
-### To install this branch, issue the following commands:
+### To install, issue the following commands:
 ```
-wget -q https://raw.githubusercontent.com/bartoqid/PAN-AF/branch1/install.sh
+wget -q https://raw.githubusercontent.com/bartoqid/PAN-AF/install.sh
 chmod +x install.sh
 ./install.sh
 ```

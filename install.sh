@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #Tell the installer the root of the files to download
-REPO="https://raw.githubusercontent.com/bartoqid/PAN-AF/branch1/"
+REPO="https://raw.githubusercontent.com/bartoqid/PAN-AF/"
 
 #check to make sure Python is installed
 python --version
