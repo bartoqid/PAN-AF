@@ -3,7 +3,7 @@ Original code is available here https://github.com/p0lr/PAN-AF and is not being 
 I will try to maintain this, make sure it is compatible with different version of PAN-OS
 and more importantly add more features.
 
-This latest code has been tested using Ubuntu 16.04 and 18.04 with PAN-OS 8.1, 9.0 and 9.1
+This latest code has been tested using Ubuntu 16.04, 18.04, and "Raspbian GNU/Linux 10 (buster)" with PAN-OS 8.1, 9.0 and 9.1
 Any issue/bug, let me know and I will get it fixed
 
 ### New Feature May 2020

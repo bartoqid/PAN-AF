@@ -6,6 +6,7 @@ REPO="https://raw.githubusercontent.com/bartoqid/PAN-AF/master/"
 #check to make sure Python is installed
 python --version
 
+sudo apt-get update
 #install the python requests module
 sudo apt-get install python-requests -y
 
@@ -16,6 +17,7 @@ sudo apt-get install sqlite3 -y
 sudo apt-get install python-pip -y
 
 #install xmldiff
+sudo apt-get install python-lxml
 sudo pip install xmldiff
 
 #create the directory for the primary dug code to live
