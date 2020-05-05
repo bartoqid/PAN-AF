@@ -71,7 +71,8 @@ else:
     <input type="text" name="fwusername"/><br>
     <label>Password</label><br>
     <input type="password" name="fwpassword"/><br>
-    <input type="submit" value="Submit"/>
+    <input
+     type="submit" value="Submit"/>
   </form>
 </div>
 </body>
