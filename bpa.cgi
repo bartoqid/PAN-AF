@@ -35,7 +35,7 @@ print """
   <form method="post" action="/cgi-bin/downloadbpa.cgi">
     <label>Do you want to generate BPA Report?<br>
      Please make sure you have enter the BPA Token.<br> 
-     Press submit to continue</label><br>
+     Press submit to continue. This process will take awhile. Please be patient.</label><br>
     <input type="submit" value="Submit"/>
   </form>
 </div>
