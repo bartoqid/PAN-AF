@@ -147,7 +147,7 @@ def macWrite(hostdata):
 def fwWrite(fwxml):
   values = {'type': 'user-id', 'key': fwkey, 'cmd': fwxml}
   palocall = 'https://' + fwhost + '/api'
-  r = requests.post(palocall, data=values, files=files, verify=False)
+  r = requests.post(palocall, data=values verify=False)
   rtree = ET.fromstring(r.text)
   return rtree.get('status')
 
