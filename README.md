@@ -29,7 +29,7 @@ The logic is as follows:
 
 ### To install this branch, issue the following commands:
 ```
-wget -q https://raw.githubusercontent.com/p0lr/PAN-AF/master/install.sh
+wget -q https://raw.githubusercontent.com/bartoqid/PAN-AF/branch1/install.sh
 chmod +x install.sh
 ./install.sh
 ```

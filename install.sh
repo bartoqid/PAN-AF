@@ -52,6 +52,9 @@ sudo service apache2 restart
 cd /usr/lib/cgi-bin
 sudo wget -q ${REPO}index.cgi
 sudo wget -q ${REPO}keygen.cgi
+sudo wget -q ${REPO}bpatoken.cgi
+sudo wget -q ${REPO}bpa.cgi
+sudo wget -q ${REPO}downloadbpa.cgi
 sudo wget -q ${REPO}vlan.cgi
 sudo wget -q ${REPO}usermap.cgi
 sudo wget -q ${REPO}groupmap.cgi

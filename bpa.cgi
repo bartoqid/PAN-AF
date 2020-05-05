@@ -3,15 +3,6 @@
 import cgi
 import cgitb; cgitb.enable(format='text')  # for troubleshooting
 import sys
-import time
-import urllib
-import requests
-import datetime
-import json 
-from requests.packages.urllib3.exceptions import InsecureRequestWarning
-requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
-import xml.etree.ElementTree as ET
-
 
 print "Content-type: text/html"
 print
@@ -39,7 +30,6 @@ menu = open("menu.html", "r")
 for line in menu:
   print line
 
-
 print """
 <div class="form1">
   <form method="post" action="/cgi-bin/downloadbpa.cgi">
@@ -52,7 +42,6 @@ print """
 </body>
 </html>
   """
-
 print "</div>"
 print "</body>"
 print "</html>"
