@@ -62,6 +62,7 @@ Please note that the image is pretty big, still a monolithic application, I have
 as micro services. Maybe one day :) 
 ```buildoutcfg
 docker pull bartoq/pan-af
+docker run -it -p 8080:80 bartoq/pan-af:latest
 ```
 
 ### To use:
