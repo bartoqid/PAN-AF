@@ -4,6 +4,7 @@
 REPO="https://raw.githubusercontent.com/bartoqid/PAN-AF/master/"
 
 cd /usr/lib/cgi-bin
+sudo rm menu.html
 sudo wget -q ${REPO}bpatoken.cgi
 sudo wget -q ${REPO}bpa.cgi
 sudo wget -q ${REPO}downloadbpa.cgi
