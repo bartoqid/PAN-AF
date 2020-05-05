@@ -1,0 +1,222 @@
+#!/usr/bin/env python
+
+import cgi
+import cgitb; cgitb.enable(format='text')  # for troubleshooting
+import sys
+from shutil import copyfileobj
+import time
+import urllib
+import requests
+import datetime
+import json 
+from requests.packages.urllib3.exceptions import InsecureRequestWarning
+requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
+import xml.etree.ElementTree as ET
+sys.path.insert(0, '/var/dug/')
+
+import fw_creds
+fwhost = fw_creds.fwhost
+fwkey = fw_creds.fwkey
+import bpatokenfile
+token = bpatokenfile.bpatoken
+
+currenttime = '{:%d-%m-%Y-%H%M%S}'.format(datetime.datetime.now())
+
+def get_system_info(firewall_ip, api_key):
+    values = {'type': 'op', 'cmd': '<show><system><info></info></system></show>', 'key': api_key}
+    call = 'https://%s/api/' % (firewall_ip)
+
+    response = requests.post(call, data=values, verify=False)
+
+    tree = ET.fromstring(response.text)
+
+    if tree.get("status") == "success":
+        return tree
+
+    else:
+        return false
+
+def get_license(firewall_ip, api_key):
+    values = {'type': 'op', 'cmd': '<request><license><info></info></license></request>', 'key': api_key}
+    call = 'https://%s/api/' % (firewall_ip)
+
+    response = requests.post(call, data=values, verify=False)
+
+    tree = ET.fromstring(response.text)
+
+    if tree.get("status") == "success":
+        return tree
+        print tree
+    else:
+        return false
+
+def get_running_config(firewall_ip, api_key):
+    values = {'type': 'config', 'action': 'show', 'key': api_key}
+    call = 'https://%s/api/' % (firewall_ip)
+
+    response = requests.post(call, data=values, verify=False)
+
+    tree = ET.fromstring(response.text)
+
+    if tree.get("status") == "success":
+        return tree
+    else:
+        return false
+
+def get_time(firewall_ip, api_key):
+    values = {'type': 'op', 'cmd': '<show><clock></clock></show>', 'key': api_key}
+    call = 'https://%s/api/' % (firewall_ip)
+
+    response = requests.post(call, data=values, verify=False)
+
+    tree = ET.fromstring(response.text)
+
+    if tree.get("status") == "success":
+        return tree
+        print tree
+    else:
+        return false
+
+def get_result(task_id, token):
+    auth = {'Authorization': 'Token %s' % token}
+    call = 'https://bpa.paloaltonetworks.com/api/v1/results/' + task_id
+    response = requests.get(call, headers=auth, verify=False)
+    status = json.loads(response.content)
+    
+    while "processing" in status["status"]:
+	time.sleep(3)
+	auth = {'Authorization': 'Token %s' % token}
+        call = 'https://bpa.paloaltonetworks.com/api/v1/results/' + task_id
+        response = requests.get(call, headers=auth, verify=False)
+        status = json.loads(response.content)
+
+    else:
+	return "success"
+
+
+def submit_bpa(xml, info, license, gettime, token):
+    values = {'xml': xml, 'system_info': info,  'license_info': license, 'system_time': gettime, 'generate_zip_bundle': 'true'}
+    auth = {'Authorization': 'Token %s' % token}
+    call = 'https://bpa.paloaltonetworks.com/api/v1/create/'
+    response = requests.post(call, headers=auth, data=values, verify=False)
+    taskid = json.loads(((response.text).encode('utf-8')))
+    resultid = taskid["task_id"]
+    return resultid
+
+def download_bpa(task_id, token, firewall_ip):
+    auth = {'Authorization': 'Token %s' % token}
+    call = 'https://bpa.paloaltonetworks.com/api/v1/results/' + task_id + '/download/'
+
+    print 'Content-Type: application/zip'
+    print 'Content-Disposition: attachment; filename="%s.zip"\n' % (firewall_ip)
+    response = requests.get(call, headers=auth, verify=False, stream=True)
+    print(response.content)
+
+
+print "Content-type: text/html"
+print
+
+print """
+<html>
+<head>
+  <title>BPA Automation</title>
+  <link rel="stylesheet" href="/style.css" type="text/css">
+</head>
+<body>
+
+<div class="titleblock">
+  <div class="image">
+    <img src="/logo.png" height="75px">
+  </div>
+  <div class="text">
+    BPA Automation
+  </div>
+</div>
+"""
+
+#Print the menu
+menu = open("menu.html", "r")
+for line in menu:
+  print line
+
+form = cgi.FieldStorage()
+
+#if (True):
+if (form.getvalue('submit1')):
+	print '<div class="response">'
+	#Get firewall system info
+	treesystem = get_system_info(fwhost, fwkey)
+	systeminfo = ET.tostring(treesystem)
+	print "System Info<br>"
+	print "<table cellpadding=5 cellspacing=0 border=1>"
+	print "<tr>"
+	print '<td width="100px" align="center">Hostname</td>'
+	print '<td align="center">IP Address</td>'
+	print '<td width="100px" align="center">Mac Address</td>'
+	print '<td width="100px" align="center">Serial Number</td>'
+	print '<td width="100px" align="center">PANOS Version</td>'
+	print "</tr>"
+	for system in treesystem.findall('./result/system'):
+    		print "<tr>"
+    		print '<td align="center">%s</td>' % (system.find('hostname').text, )
+    		print "<td>%s</td>" % (system.find('ip-address').text, )
+    		print '<td align="center">%s</td>' % (system.find('mac-address').text, )
+    		print '<td align="center">%s</td>' % (system.find('serial').text, )
+    		print '<td align="center">%s</td>' % (system.find('sw-version').text, )
+    		print "</tr>"
+	print "</table>"
+	print "<br><br>"
+
+	treelicense = get_license(fwhost, fwkey)
+	licenseinfo = ET.tostring(treelicense)
+	print "License Info<br>"
+	print "<table cellpadding=5 cellspacing=0 border=1>"
+	print "<tr>"
+	print '<td width="100px" align="center">Feature</td>'
+	print '<td align="center">Description</td>'
+	print '<td width="100px" align="center">Serial</td>'
+	print '<td width="100px" align="center">Issued</td>'
+	print '<td width="100px" align="center">Expires</td>'
+	print '<td width="100px" align="center">Expired</td>'
+	print '<td width="100px" align="center">Auth Code</td>'
+	print "</tr>"
+	for entry in treelicense.findall('./result/licenses/entry'):
+    		print "<tr>"
+    		print '<td align="center">%s</td>' % (entry.find('feature').text, )
+    		print "<td>%s</td>" % (entry.find('description').text, )
+    		print '<td align="center">%s</td>' % (entry.find('serial').text, )
+    		print '<td align="center">%s</td>' % (entry.find('issued').text, )
+    		print '<td align="center">%s</td>' % (entry.find('expires').text, )
+    		print '<td align="center">%s</td>' % (entry.find('expired').text, )
+    		print '<td align="center">%s</td>' % (entry.find('authcode').text, )
+    		print "</tr>"
+	print "</table>"
+	print "<br><br>"
+
+	treerun = get_running_config(fwhost, fwkey)
+	runconfig = ET.tostring(treerun)
+
+	treetime = get_time(fwhost, fwkey)
+	showtime = ET.tostring(treetime)
+
+	bpataskid = submit_bpa(runconfig, systeminfo, licenseinfo, showtime, token)
+	
+	result = get_result(bpataskid, token)
+	print(result)
+	filename = download_bpa(bpataskid, token, fwhost)
+
+else:
+        print """
+<div class="form1">
+  <form method="post" action="/cgi-bin/bpa.cgi">
+    <label>Do you want to generate BPA Report? Please make sure you have enter the BPA Token. Press submit to continue</label><br>
+    <input type="submit" value="Submit" name="submit1"/>
+  </form>
+</div>
+</body>
+</html>
+  """
+
+print "</div>"
+print "</body>"
+print "</html>"
