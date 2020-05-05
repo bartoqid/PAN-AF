@@ -1,5 +1,5 @@
 #!/bin/bash
-
+#test
 #Tell the installer the root of the files to download
 REPO="https://raw.githubusercontent.com/bartoqid/PAN-AF/master/"
 
