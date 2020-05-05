@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #Tell the installer the root of the files to download
-REPO="https://raw.githubusercontent.com/bartoqid/PAN-AF/"
+REPO="https://raw.githubusercontent.com/bartoqid/PAN-AF/master"
 
 cd /usr/lib/cgi-bin
 sudo wget -q ${REPO}bpatoken.cgi
