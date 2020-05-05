@@ -42,6 +42,15 @@ chmod +x install.sh
 ./install.sh
 ```
 
+### To use the containerised version
+
+If you want to use the containerised version, please pull the image from https://hub.docker.com/r/bartoq/pan-af
+Please note that the image is pretty big, still a monolithic application, I havent got the time to migrate this app
+as micro services. Maybe one day :) 
+```buildoutcfg
+docker pull bartoq/pan-af
+```
+
 ### To use:
 ```
 Browse to http://<ip>
@@ -50,6 +59,11 @@ Click on "Manage Firewall" in the navigation menu
 Enter the firewall IP address or hostname, username, and password for an account that has the proper permissions
 Click on "Generate Key" in the navigation menu
 Add your devices
+To use BPA Automation:
+Click on the BPA Token
+Enter the BPA token
+Click BPA Automation and click submit to continue. 
+Please be patient, it will take a while to generate the report.
 ```
 
 ### That's it!
