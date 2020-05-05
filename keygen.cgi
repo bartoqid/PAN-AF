@@ -21,7 +21,7 @@ print """
 <body>
 <div class="titleblock">
   <div class="image">
-    <img src="/logo.svg" height="75px">
+    <img src="/logo.png" height="75px">
   </div>
   <div class="text">
     Generate Key
@@ -71,7 +71,8 @@ else:
     <input type="text" name="fwusername"/><br>
     <label>Password</label><br>
     <input type="password" name="fwpassword"/><br>
-    <input type="submit" value="Submit"/>
+    <input
+     type="submit" value="Submit"/>
   </form>
 </div>
 </body>

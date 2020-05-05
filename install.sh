@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #Tell the installer the root of the files to download
-REPO="https://raw.githubusercontent.com/p0lr/PAN-AF/master/"
+REPO="https://raw.githubusercontent.com/bartoqid/PAN-AF/branch1/"
 
 #check to make sure Python is installed
 python --version
@@ -52,6 +52,9 @@ sudo service apache2 restart
 cd /usr/lib/cgi-bin
 sudo wget -q ${REPO}index.cgi
 sudo wget -q ${REPO}keygen.cgi
+sudo wget -q ${REPO}bpatoken.cgi
+sudo wget -q ${REPO}bpa.cgi
+sudo wget -q ${REPO}downloadbpa.cgi
 sudo wget -q ${REPO}vlan.cgi
 sudo wget -q ${REPO}usermap.cgi
 sudo wget -q ${REPO}groupmap.cgi
@@ -73,6 +76,10 @@ sudo chown www-data *.*
 sudo chgrp www-data *.*
 sudo chmod 755 *.*
 
+cd /etc/rsyslog.d
+sudo rm -f 50-default.conf
+sudo wget -q ${REPO}50-default.conf
+sudo service rsyslog restart
 #log permissions and rotation configuration
 sudo chmod 644 /var/log/syslog
 sudo chmod 644 /var/log/messages
@@ -102,7 +109,7 @@ sudo chmod 644 apache2
 cd /var/www/html
 sudo rm index.html
 sudo wget -q ${REPO}index.html
-sudo wget -q ${REPO}logo.svg
+sudo wget -q ${REPO}logo.png
 sudo wget -q ${REPO}style.css
 sudo wget -q ${REPO}favicon.ico
 sudo touch macs.txt
@@ -122,13 +129,13 @@ sudo chgrp www-data *.*
 sudo chmod 755 *.*
 
 #harden the Raspberry Pi
-sudo systemctl disable avahi-daemon
-sudo systemctl stop avahi-daemon
-sudo systemctl disable triggerhappy
-sudo systemctl stop triggerhappy
+#sudo systemctl disable avahi-daemon
+#sudo systemctl stop avahi-daemon
+#sudo systemctl disable triggerhappy
+#sudo systemctl stop triggerhappy
 
 #harden Apache
-cd /etc/apache2/conf-available
-sudo rm -y security.conf
-sudo wget -q ${REPO}security.conf
-sudo systemctl restart apache2
+#cd /etc/apache2/conf-available
+#sudo rm -y security.conf
+#sudo wget -q ${REPO}security.conf
+#sudo systemctl restart apache2

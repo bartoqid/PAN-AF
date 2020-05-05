@@ -1,3 +1,15 @@
+Thanks to Dan Ward who put together this framework
+I will try to maintain this, make sure it is compatible with different version of PAN-OS
+and more importantly add more features.
+
+This latest code has been tested using Ubuntu 16.04 and 18.04 with PAN-OS 8.1, 9.0 and 9.1
+Any issue/bug, let me know and I will get it fixed
+
+### New Feature May 2020
+BPA Automation
+This feature requires BPA token and will automate the submission and creation of BPA reports and download the reports as a zip file.
+
+
 # PAN-AF
 
 This project is an automation framework for Palo Alto Networks firewalls.  Instead of creating the same components for each new project (credential generation/storage, web framework, etc...), I opted to put my automation efforts into this framework.
@@ -15,9 +27,9 @@ The logic is as follows:
 6. If the MAC is not in the database and the hostname is not available, assign a name based on the MAC address only
 7. Upload all of the device-name-to-user-id-mappings and user-id-to-group-mappings to the firewall
 
-### To install, issue the following commands:
+### To install this branch, issue the following commands:
 ```
-wget -q https://raw.githubusercontent.com/p0lr/PAN-AF/master/install.sh
+wget -q https://raw.githubusercontent.com/bartoqid/PAN-AF/branch1/install.sh
 chmod +x install.sh
 ./install.sh
 ```

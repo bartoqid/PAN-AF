@@ -2,6 +2,7 @@
 
 import cgi
 import cgitb; cgitb.enable(format='text')  # for troubleshooting
+import sys
 
 print "Content-type: text/html"
 print
@@ -9,7 +10,7 @@ print
 print """
 <html>
 <head>
-  <title>Apache2 Access Log</title>
+  <title>BPA Automation</title>
   <link rel="stylesheet" href="/style.css" type="text/css">
 </head>
 <body>
@@ -19,7 +20,7 @@ print """
     <img src="/logo.png" height="75px">
   </div>
   <div class="text">
-    Apache2 Access Log
+    BPA Automation
   </div>
 </div>
 """
@@ -29,13 +30,18 @@ menu = open("menu.html", "r")
 for line in menu:
   print line
 
-print '<div class="response"><pre>'
-log = open("/var/log/apache2/access.log", "r").readlines()
-for line in reversed(log):
-  print line.strip()
-print "</pre></div>"
-
 print """
-  </body>
-  </html>
-"""
+<div class="form1">
+  <form method="post" action="/cgi-bin/downloadbpa.cgi">
+    <label>Do you want to generate BPA Report?<br>
+     Please make sure you have enter the BPA Token.<br> 
+     Press submit to continue</label><br>
+    <input type="submit" value="Submit"/>
+  </form>
+</div>
+</body>
+</html>
+  """
+print "</div>"
+print "</body>"
+print "</html>"
