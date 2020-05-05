@@ -2,12 +2,12 @@ Thanks to Dan Ward who put together this framework
 I will try to maintain this, make sure it is compatible with different version of PAN-OS
 and more importantly add more features.
 
-This lates code has been tested using Ubuntu 16.04 and 18.04 with PAN-OS 8.1, 9.0 and 9.1
+This latest code has been tested using Ubuntu 16.04 and 18.04 with PAN-OS 8.1, 9.0 and 9.1
 Any issue/bug, let me know and I will get it fixed
 
 ### New Feature May 2020
 BPA Automation
-This feature requires BPA token and will automate the submission and creation of BPA reports and download the reports as zip file.
+This feature requires BPA token and will automate the submission and creation of BPA reports and download the reports as a zip file.
 
 
 # PAN-AF
