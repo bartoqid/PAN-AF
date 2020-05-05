@@ -30,7 +30,8 @@ The logic is as follows:
 
 ### BPA Automation
 
-The BPA Automation is to easily generate Best Practice Assessment report for Palo Alto Networks firewall
+The BPA Automation is a tool to generate Best Practice Assessment report for Palo Alto Networks firewall.
+This tool does not require a tech support file.
 
 The logic is as follows:
 1. Generate show system info, show running config, time and license
