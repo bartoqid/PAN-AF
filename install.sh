@@ -17,7 +17,7 @@ sudo apt-get install sqlite3 -y
 sudo apt-get install python-pip -y
 
 #install xmldiff
-sudo apt-get install python-lxml
+sudo apt-get install python-lxml -y
 sudo pip install xmldiff
 
 #create the directory for the primary dug code to live
