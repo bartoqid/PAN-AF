@@ -7,9 +7,11 @@ This latest code has been tested using Ubuntu 16.04, 18.04, and "Raspbian GNU/Li
 Any issue/bug, let me know and I will get it fixed
 
 ### New Feature May 2020
-BPA Automation
+####BPA Automation 
 This feature requires BPA token and will automate the submission and creation of BPA reports and download the reports as a zip file.
 
+####GlobalProtect User Information
+GlobalProtect user information. Support multiple gateways 
 
 # PAN-AF
 
