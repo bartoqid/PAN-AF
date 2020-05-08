@@ -8,6 +8,7 @@ sudo rm menu.html
 sudo wget -q ${REPO}bpatoken.cgi
 sudo wget -q ${REPO}bpa.cgi
 sudo wget -q ${REPO}downloadbpa.cgi
+sudo wget -q ${REPO}confirmclear.cgi
 sudo wget -q ${REPO}gpusers.cgi
 sudo wget -q ${REPO}menu.html
 sudo chown www-data *.*
